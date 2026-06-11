@@ -11,7 +11,7 @@ public class PlayerWASD : MonoBehaviour
     //this is data that is accesible from inside : MonoBehaviour
     Transform pT; //we can declare it as pT just to show how it works
     PlayerWASD myScript; //we can also declare our own script here
-    Rigidbody2D myRB;
+    Rigidbody myRB;
 
     //JUMP VARS
     public Vector3 jump;
@@ -25,10 +25,7 @@ public class PlayerWASD : MonoBehaviour
         //gameobject is a property of all MonoBehaviour classes
         //transform is a propert of all GameObjects
         pT = this.gameObject.transform;
-
-        //myRB = this.gameObject.GetComponent<Rigidbody2D>();
-        //myRB = gameObject.GetComponent<Rigidbody2D>();
-        myRB = GetComponent<Rigidbody2D>();
+        myRB = GetComponent<Rigidbody>();
 
         jump = new Vector3(0.0f, 2.0f, 0.0f);
     }
@@ -46,7 +43,7 @@ public class PlayerWASD : MonoBehaviour
     }
 
     //ref from: https://discussions.unity.com/t/can-someone-help-me-make-a-simple-jump-script/145307/2
-    void OnCollisionStay2D()
+    void OnCollisionStay()
     {
     		isGrounded = true;
     }
@@ -65,28 +62,8 @@ public class PlayerWASD : MonoBehaviour
     {
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
-        return new Vector3(h,v,0);
+        return new Vector3(h,0,v);
     }
 
-    //this is an example of using basic IF/else statements to move a player back and forth
-    void ConditionalMoveExample()
-    {
-        if (Input.GetKey(LeftKey))
-        {
-            //pT.position -= Vector3.right * speed * Time.deltaTime;
-            myRB.linearVelocity = Vector3.right * -speed * Time.deltaTime;
-        }
-
-        if (Input.GetKey(RightKey))
-        {
-            //pT.position += Vector3.right * speed * Time.deltaTime;
-            myRB.linearVelocity = Vector3.right * speed * Time.deltaTime;
-        }
-
-        if (!Input.GetKey(LeftKey) && !Input.GetKey(RightKey))
-        {
-            myRB.linearVelocity = Vector3.zero;
-        }
-    }
 
 }
