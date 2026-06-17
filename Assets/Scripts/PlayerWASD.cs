@@ -25,7 +25,7 @@ public class PlayerWASD : MonoBehaviour
         //gameobject is a property of all MonoBehaviour classes
         //transform is a propert of all GameObjects
         pT = this.gameObject.transform;
-        myRB = GetComponent<Rigidbody>();
+        myRB = gameObject.GetComponent<Rigidbody>();
 
         jump = new Vector3(0.0f, 2.0f, 0.0f);
     }
